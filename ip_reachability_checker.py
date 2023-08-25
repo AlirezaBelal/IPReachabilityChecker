@@ -19,14 +19,24 @@ def check_ip_reachability(ip):
 
 
 def main():
-    while True:
-        ip = input("Enter an IP address (or 'exit' to quit): ")
+    choice = input("Do you want to check a list of IPs or one by one? (list/one): ")
 
-        if ip.lower() == "exit":
-            break
+    if choice.lower() == "list":
+        ip_list = input("Enter a list of IPs separated by spaces: ").split()
+        for ip in ip_list:
+            result = check_ip_reachability(ip)
+            print(f"IP {ip} is {result}")
+    elif choice.lower() == "one":
+        while True:
+            ip = input("Enter an IP address (or 'exit' to quit): ")
 
-        result = check_ip_reachability(ip)
-        print(f"IP {ip} is {result}")
+            if ip.lower() == "exit":
+                break
+
+            result = check_ip_reachability(ip)
+            print(f"IP {ip} is {result}")
+    else:
+        print("Invalid choice")
 
 
 if __name__ == "__main__":
